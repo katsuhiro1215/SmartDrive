@@ -85,17 +85,19 @@ const AuthForm = ({ type }: { type: FormType }) => {
                             name="fullName"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="shad-form-label">
-                                        Full Name
-                                    </FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            placeholder="Enter your full name"
-                                            className="shad-input"
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                    <FormMessage className="shad-form-message" />
+                                    <div className="shad-form-item">
+                                        <FormLabel className="shad-form-label">
+                                            Full Name
+                                        </FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                placeholder="Enter your full name"
+                                                className="shad-input"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage className="shad-form-message" />
+                                    </div>
                                 </FormItem>
                             )}
                         />
@@ -106,24 +108,26 @@ const AuthForm = ({ type }: { type: FormType }) => {
                         name="email"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className="shad-form-label">
-                                    Email
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="Enter your email"
-                                        className="shad-input"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage className="shad-form-message" />
+                                <div className="shad-form-item">
+                                    <FormLabel className="shad-form-label">
+                                        Email
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder="Enter your email"
+                                            className="shad-input"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage className="shad-form-message" />
+                                </div>
                             </FormItem>
                         )}
                     />
 
                     <Button
                         type="submit"
-                        className="shad-submit-btn"
+                        className="form-submit-button"
                         disabled={isLoading}
                     >
                         {type === "sign-in" ? "Sign In" : "Sign Up"}

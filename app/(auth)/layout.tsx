@@ -1,7 +1,7 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="flex min-h-screen">
             <section className="hidden bg-brand p-10 w-1/2 items-center justify-center lg:flex xl:w-2/5">
@@ -9,7 +9,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                     <Image
                         src="/logo.svg"
                         alt="Smart Storage Logo"
-                        width={160}
+                        width={224}
                         height={82}
                         className="h-auto"
                     />
@@ -24,8 +24,8 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                     <Image
                         src="/data.png"
                         alt="Illustration"
-                        width={320}
-                        height={320}
+                        width={342}
+                        height={342}
                         className="transition-all hover:rotate-2 hover:scale-105"
                     />
                 </div>
@@ -35,7 +35,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                     <Image
                         src="/logo.svg"
                         alt="Smart Storage Logo"
-                        width={160}
+                        width={224}
                         height={82}
                         className="h-auto w-[200px] lg:w-[250px]"
                     />
@@ -46,4 +46,4 @@ const layout = ({ children }: { children: React.ReactNode }) => {
     );
 };
 
-export default layout;
+export default Layout;

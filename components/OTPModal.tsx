@@ -20,10 +20,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { sendEmailOTP, verifySecret } from "@/lib/actions/user.actions";
-
 import { useRouter } from "next/navigation";
 
-const OTPModal = ({
+const OtpModal = ({
     accountId,
     email,
 }: {
@@ -44,12 +43,14 @@ const OTPModal = ({
         try {
             const sessionId = await verifySecret({ accountId, password });
 
-                console.log({ sessionId });
+            console.log({ sessionId });
 
             if (sessionId) router.push("/");
         } catch (error) {
             console.log("Failed to verify OTP", error);
         }
+
+        setIsLoading(false);
     };
 
     const handleResendOtp = async () => {
@@ -77,7 +78,7 @@ const OTPModal = ({
                     </AlertDialogDescription>
                 </AlertDialogHeader>
 
-                <InputOTP maxLength={6}>
+                <InputOTP maxLength={6} value={password} onChange={setPassword}>
                     <InputOTPGroup className="shad-otp">
                         <InputOTPSlot index={0} className="shad-otp-slot" />
                         <InputOTPSlot index={1} className="shad-otp-slot" />
@@ -125,4 +126,4 @@ const OTPModal = ({
     );
 };
 
-export default OTPModal;
+export default OtpModal;
