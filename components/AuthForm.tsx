@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -19,7 +18,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { createAccount, signInUser } from "@/lib/actions/user.actions";
-import OTPModal from "@/components/OTPModal";
+import OtpModal from "@/components/OTPModal";
 
 type FormType = "sign-in" | "sign-up";
 
@@ -48,13 +47,12 @@ const AuthForm = ({ type }: { type: FormType }) => {
     });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        // console.log(values);
         setIsLoading(true);
         setErrorMessage("");
 
         try {
             const user =
-                type === "sign-in"
+                type === "sign-up"
                     ? await createAccount({
                           fullName: values.fullName || "",
                           email: values.email,
@@ -63,7 +61,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
             setAccountId(user.accountId);
         } catch {
-            setErrorMessage("Failed to create an account. Please try again.");
+            setErrorMessage("Failed to create account. Please try again.");
         } finally {
             setIsLoading(false);
         }
@@ -89,6 +87,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
                                         <FormLabel className="shad-form-label">
                                             Full Name
                                         </FormLabel>
+
                                         <FormControl>
                                             <Input
                                                 placeholder="Enter your full name"
@@ -96,8 +95,9 @@ const AuthForm = ({ type }: { type: FormType }) => {
                                                 {...field}
                                             />
                                         </FormControl>
-                                        <FormMessage className="shad-form-message" />
                                     </div>
+
+                                    <FormMessage className="shad-form-message" />
                                 </FormItem>
                             )}
                         />
@@ -112,6 +112,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
                                     <FormLabel className="shad-form-label">
                                         Email
                                     </FormLabel>
+
                                     <FormControl>
                                         <Input
                                             placeholder="Enter your email"
@@ -119,8 +120,9 @@ const AuthForm = ({ type }: { type: FormType }) => {
                                             {...field}
                                         />
                                     </FormControl>
-                                    <FormMessage className="shad-form-message" />
                                 </div>
+
+                                <FormMessage className="shad-form-message" />
                             </FormItem>
                         )}
                     />
@@ -131,19 +133,22 @@ const AuthForm = ({ type }: { type: FormType }) => {
                         disabled={isLoading}
                     >
                         {type === "sign-in" ? "Sign In" : "Sign Up"}
+
                         {isLoading && (
                             <Image
-                                src="/loading.svg"
-                                alt="loading"
+                                src="/assets/icons/loader.svg"
+                                alt="loader"
                                 width={24}
                                 height={24}
                                 className="ml-2 animate-spin"
                             />
                         )}
                     </Button>
+
                     {errorMessage && (
                         <p className="error-message">*{errorMessage}</p>
                     )}
+
                     <div className="body-2 flex justify-center">
                         <p className="text-light-100">
                             {type === "sign-in"
@@ -160,8 +165,9 @@ const AuthForm = ({ type }: { type: FormType }) => {
                     </div>
                 </form>
             </Form>
+
             {accountId && (
-                <OTPModal
+                <OtpModal
                     email={form.getValues("email")}
                     accountId={accountId}
                 />

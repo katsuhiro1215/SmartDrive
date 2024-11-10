@@ -15,11 +15,10 @@ import {
     InputOTPGroup,
     InputOTPSlot,
 } from "@/components/ui/input-otp";
-
 import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { sendEmailOTP, verifySecret } from "@/lib/actions/user.actions";
+import { verifySecret, sendEmailOTP } from "@/lib/actions/user.actions";
 import { useRouter } from "next/navigation";
 
 const OtpModal = ({
@@ -34,7 +33,7 @@ const OtpModal = ({
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setIsLoading(true);
 
@@ -64,16 +63,16 @@ const OtpModal = ({
                     <AlertDialogTitle className="h2 text-center">
                         Enter Your OTP
                         <Image
-                            src="/logo.png"
-                            alt="logo"
+                            src="/assets/icons/close-dark.svg"
+                            alt="close"
                             width={20}
                             height={20}
                             onClick={() => setIsOpen(false)}
-                            className="opt-close-button"
+                            className="otp-close-button"
                         />
                     </AlertDialogTitle>
                     <AlertDialogDescription className="subtitle-2 text-center text-light-100">
-                        We&apos;ve sent a code to(" ")
+                        We&apos;ve sent a code to{" "}
                         <span className="pl-1 text-brand">{email}</span>
                     </AlertDialogDescription>
                 </AlertDialogHeader>
@@ -99,8 +98,8 @@ const OtpModal = ({
                             Submit
                             {isLoading && (
                                 <Image
-                                    src="/loading.svg"
-                                    alt="loading"
+                                    src="/assets/icons/loader.svg"
+                                    alt="loader"
                                     width={24}
                                     height={24}
                                     className="ml-2 animate-spin"
